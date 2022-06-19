@@ -1,0 +1,30 @@
+﻿@model PhoneBookModel
+@{
+	ViewData["Title"] = "Add Phone Book";
+}
+
+<div>
+	<form asp-action="SavePhone">
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" asp-for="@Model.Name" class="form-control" id="name">
+			<span asp-validation-for="@Model.Name" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="fnumber">First Number</label>
+			<input type="text" asp-for="@Model.FirstNumber" class="form-control" id="fnumber">
+			<span asp-validation-for="@Model.FirstNumber" class="text-danger"></span>
+		</div>
+		<div class="form-check">
+			<label for="snumber">Second Number</label>
+			<input type="text" asp-for="@Model.SecondNumber" class="form-control" id="snumber">
+			<span asp-validation-for="@Model.SecondNumber" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary">Save</button>
+	</form>
+</div>
+
+@section Scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+} 

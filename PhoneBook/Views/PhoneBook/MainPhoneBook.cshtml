@@ -1,0 +1,64 @@
+﻿@model List<PhoneBookModel>
+
+@{ 
+	ViewData["Title"] = "Phone Book";
+}
+
+<div>
+	<form>
+		<div class="form-group">
+			<label for="search">Search</label>
+			<input type="text" class="form-control" id="search">
+		</div>
+		<button type="button" class="btn btn-primary" onclick="Search();">Search</button>
+	</form>
+	<div id="DivGrid">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">First Number</th>
+					<th scope="col">Second Number</th>
+					<th scope="col">Update</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Index</td>
+						<td>@item.Name</td>
+						<td>@item.FirstNumber</td>
+						<td>@item.SecondNumber</td>
+						<td><a asp-action="UpdatePhone" asp-route-id="@item.ID">Update</a></td>
+						<td><a asp-action="DeletePhone" asp-route-id="@item.ID" onclick="return confirm('Are you sure you want to delete : @item.Name ؟')">Delete</a></td>
+					</tr>
+
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@section Scripts{ 
+
+<script>
+	function Search() {
+		var search = $("#search").val();
+		$.ajax({
+			url: "/PhoneBook/SearchNumber",
+			data: {
+				"search": search
+			},
+			success: function (data) {
+				$("#DivGrid").html(data);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	}
+</script>
+}

@@ -1,0 +1,27 @@
+﻿<div id="DivGrid">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">First Number</th>
+				<th scope="col">Second Number</th>
+				<th scope="col">Update</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@item.Index</td>
+					<td>@item.Name</td>
+					<td>@item.FirstNumber</td>
+					<td>@item.SecondNumber</td>
+					<td><a asp-action="UpdatePhone" asp-route-id="@item.ID">Update</a></td>
+					<td><a asp-action="DeletePhone" asp-route-id="@item.ID" onclick="return confirm('Are you sure you want to delete : @item.Name ؟')">Delete</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
